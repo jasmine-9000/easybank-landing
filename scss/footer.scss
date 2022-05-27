@@ -1,0 +1,111 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.footer {
+    // ALL PLATFORMS:
+    background-color: $darkBlue;
+    color: white;
+    padding: 2.5rem;
+    text-align: center;
+
+    a {
+        color: white;
+    }
+    &__col1, &__col2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include breakpoint-up(large) {
+            justify-content: space-between;
+        align-items: start;
+        }
+        
+    }
+    
+
+    &__logo {
+        display: inline-block;
+        grid-area: logo;
+        @include breakpoint-down(medium) {
+            margin-bottom: 1.875rem;
+        }
+    }
+    &__social {
+        @include breakpoint-down(medium) {
+            margin-bottom: 1.875rem;
+        }
+        align-self: end;
+        grid-area: social;
+
+        a {
+            display: inline-block;
+            height: 1.25rem;
+
+            svg path {
+                transition: fill 150ms ease-in-out;
+            }
+            &:hover svg path {
+                fill: $limeGreen;
+            }
+        }
+
+        a:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+    &__links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.9375rem;
+
+        @include breakpoint-up(large) {
+            justify-content: space-between;
+            align-items: start;
+        }
+        a {
+            line-height: 2.25;
+            transition: color 150ms ease-in-out;
+
+            &:hover {
+                color: $limeGreen;
+            }
+        }
+    }
+    &__col1 {
+        grid-area: col1;
+    }
+    &__col2 {
+        grid-area: col2;
+        @include breakpoint-down(medium) {
+            margin-bottom: 1.875rem;
+        }
+    }
+    &__cta {
+        grid-area: cta;
+    }
+    &__copyright {
+        grid-area: copyright;
+    }
+
+
+    // ALIGNMENT DATA
+    // ALL PLATFORMS HAVE GRID DISPLAY.
+    // MOBILE AND TABLET HAVE EVERYTHING ON ONE LINE.
+    // DESKTOP HAS 4 COLUMNS: ((LOGO, SOCIAL), COL1, COL2, (CTA, COPYRIGHT))
+    .container {
+        @include breakpoint-up(large) { 
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: auto;
+            grid-template-areas: 
+                "logo col1 col2 cta"
+                "social col1 col2 copyright";
+            gap: 1rem;
+            justify-items: start;
+            // background-color: rgb(134, 44, 119);
+        }
+    }
+    
+    
+}

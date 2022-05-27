@@ -1,0 +1,136 @@
+@import 'variables';
+@import 'mixins';
+
+.hero {
+	// THIS SECTION IS GRAY
+
+	background-color: $veryLightGray;
+
+	// ENSURE THE TEXT ITEMS ARE CENTERED ON DESKTOP
+	.container {
+		@include breakpoint-up(large) {
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	// DESKTOP STYLES
+	/*
+	@include breakpoint-up(large) {
+		min-height: 41rem;
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+	*/
+
+	&__image {
+
+		// DEFAULT MOBILE STYLES 
+		position: relative;
+		background-image: url('/images/bg-intro-mobile.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		
+		// width: 100%;
+		min-height: 17.5rem;
+
+		// TABLET ONLY: change hero height and background position
+		@include breakpoint-up(medium) {
+			min-height: 25rem;
+			background-position: center 70%;
+		}
+
+		
+
+		// DESKTOP ONLY: DESKTOP BACKGROUND NEEDS TO BE ABLE TO BE MOVED AT WILL. TAKE IT FROM .hero__image, move it to .hero::before
+		// ON DESKTOP: CHANGE BACKGROUND PICTURE, PUT IT ON THE RIGHT, MAKE IT LARGER
+		
+		@include breakpoint-up(large) {
+			flex: 3;
+			order: 2;
+			height: 41rem;
+			background-image: none;
+		}
+
+
+		&::before {
+			@include breakpoint-up(large) {
+				content: "";
+				position: absolute;
+				height: 100%;
+				background-image: url('/images/bg-intro-desktop.svg');
+				background-repeat:no-repeat;
+				background-position: center bottom;
+				width: 150%;
+				background-size: 122%;
+				background-position: 0% 83%;
+			}
+		}
+
+		// PHONE IMAGE
+
+		// MOBILE: FULL SIZE
+		// TABLET: HALF SIZE TO COMPENSATE FOR LARGE SCREEN
+		// DESKTOP: FULL SIZE, AND MOVE IT AROUND
+		&::after {
+			content: '';
+			position: absolute;
+			height: 100%; 
+			width: 100%;
+			background-image: url('/images/image-mockups.png');
+			background-size: 93%;
+			background-repeat: no-repeat;
+			background-position: center bottom;
+
+			@include breakpoint-up(medium) {
+				background-size: 52%;
+			}
+
+			@include breakpoint-up(large) {
+				width: 120%;
+				height: 122%;
+				background-size: 94%;
+				background-position: center 150%;
+				left: 22%;
+			}
+		}
+		
+	}
+
+
+
+
+	// all of the text under the image
+	&__text {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		h1 {
+			font-weight: 300;
+			font-size: 2.31rem;
+			line-height: 1.15;
+			color: $darkBlue;
+
+		}
+
+		p {
+			line-height: 1.15;
+			font-weight: 400;
+		}
+
+		@include breakpoint-up(large) {
+
+			flex: 2;
+			order: 1;
+			text-align: left;
+		}
+	}
+	// Call to action button (request invite button)
+	&__cta {
+		width: 200px;
+		margin: 0 auto;
+		text-align: center;
+	}
+}

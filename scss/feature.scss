@@ -1,0 +1,79 @@
+@import 'variables';
+@import 'mixins';
+
+.feature {
+    background-color: $lightGrayishBlue;
+
+    // MOBILE HAS ALL TEXT CENTERED
+    text-align: center;
+
+    // TABLET AND DESKTOP HAVE ALL TEXT LEFT JUSTIFIED
+    @include breakpoint-up(medium) {
+        text-align: left;
+    }
+
+    &__intro {
+        margin-bottom: 3.75rem; // 60 pixels 
+        // ON MOBILE AND TABLET, INTRODUCTION STAYS CENTERED
+        // ON DESKTOP, INTRODUCTION MOVES TO THE LEFT.
+        @include breakpoint-up(large) {
+            width: 60%;
+        }
+    }
+
+    &__grid {
+        // ON TABLET AND DESKTOP, HAVE MORE THAN 1 ITEM PER LINE; THIS REQUIRES FLEXBOX.
+        @include breakpoint-up(medium) {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        padding: 0.9375rem;
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.15;
+            color: $darkBlue;
+            margin-bottom: 1rem;
+            
+            // MAKE HEADERS LARGER ON DESKTOP
+            @include breakpoint-up(large) {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+        p {
+            font-size: 0.875rem;
+            line-height: 1.5;   
+        }
+
+
+
+        // MOBILE FORMATTING
+        // 1 ITEM PER LINE ON MOBILE
+
+        // TABLET FORMATTING 
+        @include breakpoint-up(medium) {
+             flex: 0 0 50%; // 2 ITEMS PER LINE ON TABLET
+        }
+
+        // DESKTOP FORMATTING
+        @include breakpoint-up(large) {
+            flex: 1; // 4 ITEMS PER LINE ON DESKTOP
+            
+        }
+    }
+    &__icon {
+        // HAVE LARGER SPACE ON DESKTOP
+        margin-bottom: 1.875rem;
+        @include breakpoint-up(large) {
+            margin-bottom: 2.75rem;
+        }
+    }
+}

@@ -1,0 +1,180 @@
+@import 'variables';
+@import 'mixins';
+
+.navigation {
+	z-index: 1;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #FFF;
+	height: 5rem;// 80px;
+	position: relative;
+	
+	
+	&__logo {
+		
+		background-image: url('/images/logo.svg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		// width="139" height="20"
+		width: 8.6875rem;
+		height: 1.25rem;
+	}
+	
+	// Desktop links 
+	&__links {
+		// hide these on mobile
+		@include breakpoint-down(medium) {
+			display: none;
+		}
+		> a {
+			position: relative;
+			color: $grayishBlue;
+			text-decoration: none;
+			// UNDERLINE
+			&:after {
+				// styling
+				content: '';
+				width: 100%;
+				height: 4px;
+				background-image: linear-gradient(to right, $limeGreen, $brightCyan);
+				
+				// positioning
+				position: absolute;
+				bottom: -30px;
+				left: 0px;
+				
+				// not displayed until hovered.
+				opacity: 0;
+				transition: opacity 0.5s;
+			}
+			
+			// DISPLAY ON HOVER
+			&:hover {
+				color: $darkBlue;
+				&:after {
+					opacity: 1;
+				}
+			}
+		}
+		> a:not(last) {
+			margin-right: 32px;
+		}
+	}
+	
+	&__hamburger {
+		height: 20px;
+		width: 26px;
+		> span {
+			display: block;
+			margin: 5px;
+			width: 100%;
+			height: 1px;
+			background-color: black;
+			opacity: 1;
+			transition: transform 200ms, opacity 200ms;
+		}
+		@include breakpoint-up(medium) {
+			display: none;
+		}
+		&.open {
+			// hamburger open styles.
+			> span {
+				transform-origin: 81% 50%;
+				&:first-child {
+					transform: rotate(-45deg);
+				}
+				&:nth-child(2) {
+					opacity: 0;
+				}
+				&:last-child {
+					transform: rotate(45deg);
+				}
+			}
+		}
+	}
+	
+
+	// mobile links. Only displayed on mobile.
+	&__mobile-links {
+		// Position data (places the mobile menu above the Thing.
+		position: absolute;
+		width: calc(100% - 3rem);
+		left: 50%;
+		transform: translateX(-50%);
+		background: white;
+		margin-top: 1.5rem;
+		padding: 1.625rem;
+		border-radius: 4px;
+		text-align: center;
+		z-index: 2;
+		opacity: 0;	
+		visibility: hidden;
+		// alignment data
+		
+		
+		
+
+	
+		
+		
+		
+		
+		
+		
+		/*
+		//margin: 24px;
+		margin-left: 1.5rem;
+		margin-right: 1.5rem;
+		*/
+		
+		
+		a {
+			display: block;
+			text-decoration: none; 
+			padding: 0.625rem;
+			color: $darkBlue;
+			opacity: 1;
+		}
+		&.open {
+			visibility: visible;
+			opacity: 1;
+		}
+			// Color data
+		
+		color: $darkBlue;
+		
+	} 
+	
+	&__cta {
+		@include breakpoint-down(medium) {
+			display: none;
+		}
+	}
+	
+}
+
+.overlay {
+	position: fixed;
+	top: 5rem;
+	//top: 0px;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+	//height: 100vh;
+	background-color: $darkBlue; // fallback color 
+	
+	background-image: linear-gradient(to bottom, $darkBlue, white);
+	// background-image: linear-gradient($darkBlue, transparent);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 200ms;
+	&.open {
+		visibility: visible;
+		opacity: 0.6;
+	}
+	
+}
+
+
+
